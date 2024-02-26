@@ -19,6 +19,10 @@ def hello():
     return "Hello World!"
 
 
+# Current problem being debugged
+# The program throws errors when attempting to compare the face seen with the faces in the database
+# Several errors were related to the feature-vectors needed to compare faces. As such, much of my time was
+# spent learning how uses these vectors to compare faces.
 @app.route("/recognize", methods=['POST'])
 def recognize():
     response = request.json
@@ -56,7 +60,9 @@ def register():
     images = facenet.boxes_to_images(rbg_image, boxes[-1:])
     embeddings_features = facenet.face_recognize(images)
     feature = embeddings_features[0]
+    print(feature)
     facenet.register_new_face(response["id"], response["name"], images[0], feature)
+    # print("register success") # print added while debugging the register function
     return "register success"
 
 

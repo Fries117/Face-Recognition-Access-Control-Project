@@ -12,7 +12,13 @@ class QueryProcessor:
         # 从连接池中获取一个连接
         conn = self.conn_pool.getconn()
         cursor = conn.cursor()
-        cursor.execute(sql)
+        # print and if statements made to fix an error that occured while reading from the database.
+        print(sql)
+        if type(sql) is tuple:
+            cursor.execute(*sql)
+        else:
+            cursor.execute(sql)
+
         result = cursor.fetchall()
         # 将连接放回连接池中
         self.conn_pool.putconn(conn)

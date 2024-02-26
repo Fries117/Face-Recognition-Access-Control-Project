@@ -71,9 +71,22 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == "__main__":
+
+    # Python script made to capture an image and add it to the faceImage table
+
+    # cap = cv2.VideoCapture(0)
+    # ret, frame = cap.read()
+    # rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    # small_frame = cv2.resize(rgb_frame, (0, 0), fx=0.25, fy=0.25)
+    # print(small_frame)
+    # cv2.imwrite('./test.png', small_frame)
+    # cap.release()
+    # cv2.destroyAllWindows()
+
     app = QApplication(sys.argv)
     widget = MainWindow()
     widget.show()
     gate = Gate(widget, 1, 'in', url='http://localhost:5555')
+    # gate.register(small_frame, "S0011", "Walter Smith") #registers a new face into the database
     Thread(target=gate.run).start()
     sys.exit(app.exec())

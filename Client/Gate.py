@@ -24,6 +24,7 @@ class Gate:
             "name": name,
         }
         returnData = requests.post(f"{self.url}/register", json=res)
+        # print("register") # print statement added while debugging the register function.
         return returnData.text
 
     def door_record(self, door_id, direction, start_time, end_time):
